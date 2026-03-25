@@ -49,6 +49,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends sudo && apt-get
 RUN echo "set-option -g history-limit 50000" > /home/operator/.tmux.conf && \
     chown operator:operator /home/operator/.tmux.conf
 
+# Grant nmap raw socket capability so non-root operator can run SYN scans / OS detection
+RUN apt-get update && apt-get install -y --no-install-recommends libcap2-bin && apt-get clean && \
+    setcap cap_net_raw,cap_net_admin,cap_net_bind_service=eip $(which nmap)
+
 # Working directory for the agent's virtual filesystem
 WORKDIR /workspace
 
