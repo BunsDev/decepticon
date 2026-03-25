@@ -2,7 +2,7 @@ services:
   # LiteLLM Proxy — LLM API Gateway
   # Handles model routing, authentication, usage tracking, billing
   litellm:
-    image: ghcr.io/berriai/litellm:main-v1.82.6
+    image: ghcr.io/berriai/litellm:main-v1.82.3
     container_name: decepticon-litellm
     volumes:
       - ./config/litellm.yaml:/app/config.yaml:ro
