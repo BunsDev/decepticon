@@ -276,6 +276,7 @@ export function useAgent({
                 messages: [{ role: "user", content: message }],
               },
               streamMode: ["values", "custom"],
+              signal: abortController.signal,
             },
           );
 

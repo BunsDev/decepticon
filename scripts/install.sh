@@ -205,17 +205,17 @@ case "${1:-}" in
 
         # Start background services
         echo -e "${DIM}Starting services...${NC}"
-        $COMPOSE up -d litellm postgres sandbox langgraph
+        $COMPOSE up -d --no-build litellm postgres sandbox langgraph > /dev/null 2>&1
 
         wait_for_server
 
         # Run CLI in foreground (interactive)
-        $COMPOSE_PROFILES run --rm cli
+        $COMPOSE_PROFILES run --no-build --rm cli
         ;;
 
     stop)
         echo -e "${DIM}Stopping all services...${NC}"
-        $COMPOSE --profile cli --profile victims down
+        $COMPOSE --profile cli --profile victims down > /dev/null 2>&1
         # Clean up orphaned CLI containers from 'docker compose run'
         docker rm $(docker ps -aq --filter "name=decepticon-cli-run" --filter "status=exited") 2>/dev/null || true
         echo -e "${GREEN}All services stopped.${NC}"
@@ -267,8 +267,8 @@ case "${1:-}" in
         # Stop running services and restart with new images
         if docker ps --filter "name=decepticon-langgraph" --format '{{.Names}}' | grep -q .; then
             echo -e "${DIM}Restarting services with new version...${NC}"
-            $COMPOSE --profile cli --profile victims down
-            $COMPOSE up -d litellm postgres sandbox langgraph
+            $COMPOSE --profile cli --profile victims down > /dev/null 2>&1
+            $COMPOSE up -d --no-build litellm postgres sandbox langgraph > /dev/null 2>&1
             echo -e "${GREEN}Updated and restarted (v${latest}).${NC}"
         else
             echo -e "${GREEN}Updated to v${latest}. Run ${NC}${BOLD}decepticon${NC}${GREEN} to start.${NC}"
@@ -316,11 +316,11 @@ case "${1:-}" in
 
         # Start victim target
         echo -e "${DIM}Starting Metasploitable 2...${NC}"
-        $COMPOSE --profile victims up -d metasploitable2
+        $COMPOSE --profile victims up -d --no-build > /dev/null 2>&1 metasploitable2 > /dev/null 2>&1
 
         # Start core services
         echo -e "${DIM}Starting services...${NC}"
-        $COMPOSE up -d litellm postgres sandbox langgraph
+        $COMPOSE up -d --no-build litellm postgres sandbox langgraph > /dev/null 2>&1
 
         wait_for_server
 
@@ -330,11 +330,11 @@ case "${1:-}" in
         echo ""
 
         # Run CLI with auto-start message
-        $COMPOSE_PROFILES run --rm -e DECEPTICON_INITIAL_MESSAGE="Resume the demo engagement and execute all objectives." cli
+        $COMPOSE_PROFILES run --no-build --rm -e DECEPTICON_INITIAL_MESSAGE="Resume the demo engagement and execute all objectives." cli
         ;;
 
     victims)
-        $COMPOSE --profile victims up -d
+        $COMPOSE --profile victims up -d --no-build > /dev/null 2>&1
         echo -e "${GREEN}Victim targets started.${NC}"
         echo -e "${DIM}Use ${NC}${BOLD}decepticon status${NC}${DIM} to verify.${NC}"
         ;;
