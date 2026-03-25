@@ -1,81 +1,56 @@
 {
   "engagement_name": "Decepticon Demo — Metasploitable2",
   "branch_name": "engage/demo-internal-msf2",
-  "threat_profile": "Opportunistic attacker with low sophistication targeting known vulnerabilities in legacy services.",
+  "threat_profile": "Opportunistic attacker targeting known vulnerabilities in legacy services.",
   "kill_chain": ["recon", "exploit", "install"],
   "objectives": [
     {
       "id": "OBJ-REC-001",
       "phase": "recon",
-      "title": "TCP port scan on decepticon-msf2",
-      "description": "Perform a TCP SYN scan of all 65535 ports on decepticon-msf2 to map the full attack surface.",
+      "title": "Service scan on decepticon-msf2",
+      "description": "Run a fast targeted scan on high-value ports to fingerprint services. Use nmap -sV -T4 on ports 21,22,23,80,139,445,3306,6667 only.",
       "acceptance_criteria": [
-        "nmap SYN scan (-sS) completed against decepticon-msf2",
-        "Results saved to recon/nmap_syn.txt",
-        "Open ports listed and summarized",
-        "Target verified against roe.json in-scope list",
-        "OPSEC: Isolated lab — no rate limiting required"
+        "Targeted nmap -sV scan completed (not a full 65535 scan)",
+        "Open services and versions identified",
+        "Results saved to recon/services.txt"
       ],
       "priority": 1,
       "status": "pending",
       "mitre": "T1595.001",
       "risk_level": "medium",
-      "opsec_notes": "Isolated Docker network — scan freely."
-    },
-    {
-      "id": "OBJ-REC-002",
-      "phase": "recon",
-      "title": "Service version detection on open ports",
-      "description": "Run service version detection (-sV) on all open ports discovered in OBJ-REC-001 to identify exploitable software versions.",
-      "acceptance_criteria": [
-        "nmap -sV completed on all open ports from OBJ-REC-001",
-        "Results saved to recon/nmap_versions.txt",
-        "Service versions mapped and notable findings highlighted (e.g. vsftpd 2.3.4, UnrealIRCd)",
-        "Target verified against roe.json in-scope list",
-        "OPSEC: Isolated lab — no restrictions"
-      ],
-      "priority": 2,
-      "status": "pending",
-      "mitre": "T1592.002",
-      "risk_level": "medium",
-      "opsec_notes": "Version probes are active but acceptable in isolated lab."
+      "opsec_notes": "Isolated lab — scan freely."
     },
     {
       "id": "OBJ-EXP-001",
       "phase": "exploit",
-      "title": "Exploit vsftpd 2.3.4 backdoor on decepticon-msf2",
-      "description": "Exploit the known vsftpd 2.3.4 backdoor vulnerability (CVE-2011-2523). Connect to port 21, trigger the backdoor by sending a username ending with ':)', then connect to the backdoor shell on port 6200.",
+      "title": "Exploit vsftpd 2.3.4 backdoor",
+      "description": "Trigger the vsftpd 2.3.4 backdoor (CVE-2011-2523): send a username ending with ':)' to port 21, then connect to the backdoor shell on port 6200.",
       "acceptance_criteria": [
-        "vsftpd 2.3.4 confirmed running on port 21",
-        "Backdoor triggered successfully — shell obtained on port 6200",
-        "Command execution demonstrated (id, whoami, uname -a)",
-        "Results saved to exploit/vsftpd_exploit.txt",
-        "Target verified against roe.json in-scope list"
+        "Backdoor triggered — shell obtained on port 6200",
+        "Command execution confirmed (id, whoami)",
+        "Results saved to exploit/vsftpd.txt"
       ],
-      "priority": 3,
+      "priority": 2,
       "status": "pending",
       "mitre": "T1190",
       "risk_level": "high",
-      "opsec_notes": "Known backdoor — reliable exploit with no crash risk."
+      "opsec_notes": "Known backdoor — reliable, no crash risk."
     },
     {
       "id": "OBJ-INS-001",
       "phase": "install",
-      "title": "Post-exploitation enumeration on decepticon-msf2",
-      "description": "After gaining access via vsftpd backdoor, enumerate the compromised system: collect OS info, user accounts, network configuration, running services, and any accessible credential files.",
+      "title": "Credential harvesting",
+      "description": "From the vsftpd backdoor shell, harvest /etc/shadow and enumerate users with login shells.",
       "acceptance_criteria": [
-        "OS and kernel version collected (uname -a, cat /etc/issue)",
-        "User accounts enumerated (cat /etc/passwd)",
-        "Shadow file accessibility checked (cat /etc/shadow)",
-        "Network configuration documented (ifconfig, netstat -tlnp)",
-        "Results saved to post-exploit/enumeration.txt",
-        "All actions performed only on in-scope target"
+        "Shadow file contents captured",
+        "Users with login shells listed",
+        "Results saved to post-exploit/creds.txt"
       ],
-      "priority": 4,
+      "priority": 3,
       "status": "pending",
-      "mitre": "T1059.004",
+      "mitre": "T1003.008",
       "risk_level": "high",
-      "opsec_notes": "Post-exploitation on already compromised host — acceptable in lab."
+      "opsec_notes": "Post-exploitation on compromised host."
     }
   ]
 }

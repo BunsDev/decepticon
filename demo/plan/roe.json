@@ -4,69 +4,26 @@
   "start_date": "2026-01-01",
   "end_date": "2099-12-31",
   "engagement_type": "internal",
-  "testing_window": "24/7 — no restrictions (isolated lab environment, UTC)",
+  "testing_window": "24/7 (isolated lab, UTC)",
   "in_scope": [
-    {
-      "target": "decepticon-msf2",
-      "type": "host",
-      "notes": "Metasploitable 2 container on decepticon-net. All ports and services are in scope."
-    }
+    { "target": "decepticon-msf2", "type": "host", "notes": "All ports and services." }
   ],
   "out_of_scope": [
-    {
-      "target": "decepticon-litellm",
-      "type": "host",
-      "notes": "LiteLLM proxy — infrastructure, not a target"
-    },
-    {
-      "target": "decepticon-sandbox",
-      "type": "host",
-      "notes": "Kali sandbox — our own execution environment"
-    },
-    {
-      "target": "decepticon-langgraph",
-      "type": "host",
-      "notes": "LangGraph server — infrastructure"
-    },
-    {
-      "target": "decepticon-db",
-      "type": "host",
-      "notes": "PostgreSQL — infrastructure"
-    }
+    { "target": "decepticon-*", "type": "host", "notes": "All infrastructure containers except decepticon-msf2." }
   ],
   "prohibited_actions": [
-    "Denial of Service (DoS/DDoS) attacks",
-    "Social engineering against real people",
-    "Physical access attempts",
-    "Data exfiltration to external systems",
-    "Modification of production data",
-    "Attacking any host outside decepticon-net"
+    "DoS attacks",
+    "Attacking hosts outside decepticon-net",
+    "Data exfiltration to external systems"
   ],
   "permitted_actions": [
-    "Full port scanning",
-    "Service enumeration and version detection",
-    "Vulnerability scanning",
+    "Port scanning and service enumeration",
     "Exploitation of discovered vulnerabilities",
-    "Credential brute-forcing against in-scope services",
-    "Post-exploitation and privilege escalation",
-    "Lateral movement within in-scope targets"
+    "Post-exploitation and credential harvesting"
   ],
   "escalation_contacts": [
-    {
-      "name": "Demo Operator",
-      "role": "Red Team Lead",
-      "channel": "Local — this is a self-contained demo",
-      "available": "24/7"
-    },
-    {
-      "name": "PurpleAILAB",
-      "role": "Project Maintainer",
-      "channel": "https://discord.gg/TZUYsZgrRG",
-      "available": "Best effort"
-    }
+    { "name": "Demo Operator", "role": "Red Team Lead", "channel": "Local" }
   ],
-  "incident_procedure": "This is an isolated lab environment. No incident procedure required. If unexpected behavior occurs, run: decepticon stop",
-  "authorization_reference": "Self-authorized demo environment — all targets are intentionally vulnerable containers owned by the operator.",
-  "version": "1.0",
-  "last_updated": "2026-01-01T00:00:00Z"
+  "authorization_reference": "Self-authorized — all targets are intentionally vulnerable containers owned by the operator.",
+  "version": "1.1"
 }

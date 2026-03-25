@@ -1,47 +1,23 @@
 {
   "engagement_name": "Decepticon Demo — Metasploitable2",
-  "executive_summary": "A guided demonstration of Decepticon's autonomous red team capabilities against Metasploitable 2, an intentionally vulnerable Linux host. The objective is to progress through the kill chain — from reconnaissance to exploitation — in a fully isolated Docker environment.",
+  "executive_summary": "Autonomous red team demo: recon → exploit → post-exploit against Metasploitable 2 in an isolated Docker lab.",
   "threat_actors": [
     {
       "name": "Opportunistic Attacker",
       "sophistication": "low",
       "motivation": "financial",
-      "initial_access": ["T1190"],
-      "ttps": ["T1595.001", "T1592.002", "T1190", "T1059.004"]
+      "ttps": ["T1595.001", "T1190", "T1059.004"]
     }
   ],
-  "attack_narrative": "An opportunistic attacker discovers the target host exposed on an internal network. They begin with port scanning to map the attack surface, then identify outdated services with known vulnerabilities. Using publicly available exploits, they gain initial access through a backdoored service and escalate to gather system information and credentials.",
+  "attack_narrative": "Attacker scans target ports, identifies a backdoored FTP service, exploits it for shell access, then harvests credentials.",
   "kill_chain": [
-    {
-      "phase": "recon",
-      "description": "Discover open ports and identify vulnerable service versions on the target.",
-      "success_criteria": "Complete port map with service versions documented.",
-      "tools": ["nmap"]
-    },
-    {
-      "phase": "exploit",
-      "description": "Exploit a known vulnerability in an identified service to gain remote access.",
-      "success_criteria": "Interactive shell obtained on the target system.",
-      "tools": ["nmap", "bash", "netcat"]
-    },
-    {
-      "phase": "install",
-      "description": "Gather system information and credentials from the compromised host.",
-      "success_criteria": "System info, users, and credential artifacts collected and documented.",
-      "tools": ["bash"]
-    }
+    { "phase": "recon", "description": "Targeted port scan and service fingerprinting.", "tools": ["nmap"] },
+    { "phase": "exploit", "description": "Exploit vsftpd 2.3.4 backdoor for remote shell.", "tools": ["bash", "netcat"] },
+    { "phase": "install", "description": "Harvest system info and credential files.", "tools": ["bash"] }
   ],
-  "methodology": "PTES + MITRE ATT&CK framework",
-  "communication_plan": "Real-time via Decepticon CLI streaming. No external reporting required for demo.",
-  "deconfliction_method": "Not applicable — isolated lab environment with no SOC.",
-  "phases_timeline": {
-    "recon": "Single session",
-    "exploit": "Single session",
-    "install": "Single session"
-  },
+  "methodology": "PTES + MITRE ATT&CK",
   "success_criteria": [
-    "At least one service successfully exploited with remote shell access",
-    "System information and credential artifacts collected from compromised host",
-    "All findings documented in engagement workspace"
+    "Shell access obtained via exploited service",
+    "Credentials harvested from compromised host"
   ]
 }
