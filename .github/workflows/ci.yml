@@ -1,5 +1,9 @@
 name: CI
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 on:
   push:
     branches: [main, refactor]
@@ -29,10 +33,11 @@ jobs:
       - uses: astral-sh/setup-uv@v5
         with:
           version: "latest"
+          enable-cache: true
       - uses: actions/setup-python@v5
         with:
           python-version: "3.13"
-      - run: uv venv && uv pip install -e ".[dev]"
+      - run: uv sync --dev
       - run: uv run ruff check .
       - run: uv run ruff format --check .
       - run: uv run pytest
