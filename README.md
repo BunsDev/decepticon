@@ -8,7 +8,7 @@
 
 <h1 align="center">Decepticon — Autonomous Hacking Agent</h1>
 
-<p align="center"><i>"Tired of AI hackers that are either illegal or completely useless? Yeah, us too."</i></p>
+<p align="center"><i>"Another AI hacking tool? Let us guess — it runs nmap and writes a report. Groundbreaking."</i></p>
 
 <div align="center">
 
@@ -39,7 +39,7 @@
 <br/>
 
 <div align="center">
-  <img src="assets/demo.gif" alt="Decepticon CLI Demo" width="800">
+  <video src="https://github.com/PurpleAILAB/Decepticon/raw/main/assets/demo.mp4" width="800" controls></video>
 </div>
 
 ## Install
@@ -79,7 +79,7 @@ Let's be honest. The "AI + hacking" space is exhausting.
 
 Every other week, someone drops a demo: *"Look, GPT can run nmap!"* Cool. Then what? It either ends up as a party trick that no one actually uses in production — or worse, it crosses a line nobody should cross.
 
-> *"So these AI hacking agents... if they're not illegal, what are they even for?"*
+> *"Yet another AI pentesting tool... cool demo. But when does it actually do something a real attacker would?"*
 
 Fair question. Here's our answer.
 
