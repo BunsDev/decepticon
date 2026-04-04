@@ -8,7 +8,7 @@
 
 <h1 align="center">Decepticon — Autonomous Hacking Agent</h1>
 
-<p align="center"><i>"Another AI hacker? Let us guess — it runs nmap and writes a report. Groundbreaking. Then what?"</i></p>
+<p align="center"><i>"Another AI hacker? Let us guess — it runs nmap and writes a report. How original. Then what?"</i></p>
 
 <div align="center">
 
