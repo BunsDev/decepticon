@@ -263,7 +263,7 @@ To determine "what's next", check for these artifacts:
 
 | Agent | CLI Command | SkillsMiddleware Sources | Skills |
 |-------|-------------|--------------------------|--------|
-| **Planner** | `/plan` | `/skills/planning/` | `roe-template`, `threat-profile`, `conops-template`, `opplan-converter` |
+| **Soundwave** | `/plan` | `/skills/soundwave/` | `roe-template`, `threat-profile`, `conops-template`, `opplan-converter` |
 | **Recon** | `/recon` | `/skills/recon/`, `/skills/shared/` | `passive-recon`, `osint`, `cloud-recon`, `active-recon`, `web-recon`, `reporting` + shared |
 | **Exploit** | `/exploit` | `/skills/exploit/`, `/skills/shared/` | `web`, `ad` + shared (`defense-evasion`, `opsec`, `workflow`) |
 | **PostExploit** | `/postexploit` | `/skills/post-exploit/`, `/skills/shared/` | `credential-access`, `privilege-escalation`, `lateral-movement`, `c2`, `c2-sliver` + shared |
@@ -275,7 +275,7 @@ Cross-cutting (via `/skills/shared/`): `opsec` (Recon + Exploit + PostExploit), 
 
 | Phase | Agent | Source | Skills | MITRE Tactics |
 |-------|-------|--------|--------|---------------|
-| Planning | Planner | `/skills/planning/` | `roe-template`, `threat-profile`, `conops-template`, `opplan-converter` | — |
+| Planning | Soundwave | `/skills/soundwave/` | `roe-template`, `threat-profile`, `conops-template`, `opplan-converter` | — |
 | Reconnaissance | Recon | `/skills/recon/` | `passive-recon`, `osint`, `cloud-recon`, `active-recon`, `web-recon`, `reporting` | TA0043 |
 | Exploitation | Exploit | `/skills/exploit/` | `web`, `ad` | TA0001, TA0002 |
 | Post-Exploitation | PostExploit | `/skills/post-exploit/` | `credential-access`, `privilege-escalation`, `lateral-movement`, `c2`, `c2-sliver` | TA0006, TA0004, TA0008, TA0011 |

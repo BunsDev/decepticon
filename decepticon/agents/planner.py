@@ -70,7 +70,7 @@ def create_planner_agent():
 
     # Assemble middleware stack
     middleware = [
-        DecepticonSkillsMiddleware(backend=backend, sources=["/skills/planning/"]),
+        DecepticonSkillsMiddleware(backend=backend, sources=["/skills/soundwave/"]),
         FilesystemMiddleware(backend=backend),
     ]
     if fallback_models:
