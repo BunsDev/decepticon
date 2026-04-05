@@ -116,8 +116,7 @@ class Evidence(BaseModel):
 
     type: str = Field(
         description=(
-            "Evidence type: screenshot, http-request, terminal-log, "
-            "pcap, artifact, scan-output"
+            "Evidence type: screenshot, http-request, terminal-log, pcap, artifact, scan-output"
         )
     )
     path: str = Field(description="Relative path within engagement workspace")
@@ -138,9 +137,7 @@ class Finding(BaseModel):
     """
 
     id: str = Field(description="Auto-generated ID: FIND-001, FIND-002, ...")
-    title: str = Field(
-        description="Bug bounty format: '[Type] in [Target] allows [Impact]'"
-    )
+    title: str = Field(description="Bug bounty format: '[Type] in [Target] allows [Impact]'")
     severity: FindingSeverity
     cvss_score: float | None = Field(default=None, description="Numeric CVSS score (0.0-10.0)")
     cvss_vector: str = Field(
@@ -183,9 +180,7 @@ class Finding(BaseModel):
     )
 
     # AI Agent metadata
-    objective_id: str = Field(
-        default="", description="OPPLAN objective that found this (OBJ-xxx)"
-    )
+    objective_id: str = Field(default="", description="OPPLAN objective that found this (OBJ-xxx)")
     phase: ObjectivePhase | None = None
     agent: str = Field(
         default="", description="Agent that discovered this: recon/exploit/postexploit"
@@ -209,9 +204,7 @@ class AttackPathStep(BaseModel):
     source: str = Field(description="Origin host/service for this hop")
     target: str = Field(description="Destination host/service")
     tool: str = Field(default="", description="Tool used for this step")
-    detected: bool | None = Field(
-        default=None, description="Whether this step was detected"
-    )
+    detected: bool | None = Field(default=None, description="Whether this step was detected")
     finding_id: str = Field(default="", description="Related finding ID (FIND-xxx)")
 
 
@@ -226,12 +219,8 @@ class AttackPath(BaseModel):
     """
 
     id: str = Field(description="Auto-generated ID: PATH-001, PATH-002, ...")
-    name: str = Field(
-        description="Descriptive name, e.g. 'External to DB Admin via SSRF Chain'"
-    )
-    description: str = Field(
-        default="", description="Narrative description of the attack path"
-    )
+    name: str = Field(description="Descriptive name, e.g. 'External to DB Admin via SSRF Chain'")
+    description: str = Field(default="", description="Narrative description of the attack path")
     steps: list[AttackPathStep] = Field(default_factory=list)
     combined_severity: FindingSeverity = FindingSeverity.CRITICAL
     finding_ids: list[str] = Field(
