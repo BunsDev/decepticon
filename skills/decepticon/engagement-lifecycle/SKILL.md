@@ -1,11 +1,12 @@
 ---
 name: engagement-lifecycle
 description: "Red team engagement lifecycle management — initiation, phase transitions, go/no-go gates, deconfliction, emergency procedures, completion."
+allowed-tools: Read
 metadata:
   subdomain: orchestration
   when_to_use: "start engagement, new engagement, engagement status, phase transition, go/no-go, deconfliction, emergency stop, engagement complete, wrap up"
   tags: engagement, lifecycle, planning, phase-transition, deconfliction, emergency, completion
-  mitre_attack:
+  mitre_attack: []
 ---
 
 # Engagement Lifecycle Management

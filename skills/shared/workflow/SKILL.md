@@ -1,6 +1,7 @@
 ---
 name: workflow
 description: "Top-level orchestration skill — execution order and dependencies across all Decepticon skills."
+allowed-tools: Read
 metadata:
   subdomain: orchestration
   when_to_use: "start engagement, what's next, run workflow, engagement status, which skill, next step"

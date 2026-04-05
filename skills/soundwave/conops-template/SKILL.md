@@ -6,7 +6,7 @@ metadata:
   subdomain: planning
   when_to_use: "create CONOPS, design operation, threat model, plan attack"
   tags: conops, kill-chain, threat-model, operation-design
-  mitre_attack:
+  mitre_attack: []
 ---
 
 # Concept of Operations (CONOPS) Generator

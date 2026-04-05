@@ -6,7 +6,7 @@ metadata:
   subdomain: planning
   when_to_use: "create RoE, define scope, engagement boundaries, start new engagement"
   tags: roe, scope, engagement, authorization, legal
-  mitre_attack:
+  mitre_attack: []
 ---
 
 # Rules of Engagement (RoE) Generator

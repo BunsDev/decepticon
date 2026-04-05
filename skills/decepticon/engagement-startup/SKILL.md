@@ -1,6 +1,7 @@
 ---
 name: engagement-startup
 description: "Mandatory first-turn startup procedure — checks for existing engagements, resume/new selection, workspace initialization."
+allowed-tools: Bash Read
 metadata:
   subdomain: orchestration
   when_to_use: "agent startup, first message, session start"

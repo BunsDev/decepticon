@@ -1,6 +1,7 @@
 ---
 name: kill-chain-analysis
 description: "Kill chain analysis and attack path decision-making — findings analysis, attack vector selection, target prioritization, phase transitions."
+allowed-tools: Read
 metadata:
   subdomain: orchestration
   when_to_use: "analyze findings, select attack vector, prioritize targets, which technique, attack path, next attack, choose approach, alternative vector, blocked what next"

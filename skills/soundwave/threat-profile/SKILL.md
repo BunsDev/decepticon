@@ -6,7 +6,7 @@ metadata:
   subdomain: planning
   when_to_use: "threat modeling, adversary emulation, APT simulation, threat actor selection, who should we emulate, what kind of attacker"
   tags: threat-modeling, apt, adversary-emulation, mitre-attack
-  mitre_attack:
+  mitre_attack: []
 ---
 
 # Threat Profile Builder
