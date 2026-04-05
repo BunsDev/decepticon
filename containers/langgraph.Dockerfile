@@ -20,8 +20,9 @@ COPY pyproject.toml langgraph.json README.md ./
 COPY decepticon/ decepticon/
 COPY skills/ skills/
 
-# Install Python dependencies (non-editable — no source changes inside container)
-RUN uv pip install --system "." && \
+# Install Python dependencies (editable — synced source changes via docker compose watch
+# are immediately reflected without reinstall)
+RUN uv pip install --system -e "." && \
     uv pip install --system "langgraph-cli[inmem]>=0.2.0"
 
 EXPOSE 2024

@@ -247,15 +247,23 @@ We welcome contributions. Whether you're a security researcher, an AI engineer, 
 git clone https://github.com/PurpleAILAB/Decepticon.git
 cd Decepticon
 
-# Python agents
-uv sync --dev
+# Start with hot-reload (builds Docker images + watches for source changes)
+make dev
 
-# CLI client
-cd clients/cli && npm install && cd ../..
+# In a separate terminal — open the interactive CLI
+make cli
+```
 
-# Run locally
-docker compose up -d --build
-cd clients/cli && npm run dev
+Development runs in the **same Docker containers** as production. Source changes are automatically synced into containers via `docker compose watch` — no manual rebuilds needed.
+
+```bash
+make dev          # Build + start with hot-reload
+make cli          # Interactive CLI (separate terminal)
+make start        # Start in background (no hot-reload, production-like)
+make stop         # Stop all services
+make test         # Run pytest inside container
+make lint         # Lint + typecheck locally (requires: uv sync --dev)
+make help         # Show all available targets
 ```
 
 1. Fork the repository
