@@ -3,7 +3,7 @@
 # Starts by default with: docker compose up -d
 #
 # Pin digest for reproducible builds (same base as sandbox).
-FROM kalilinux/kali-rolling@sha256:287cd5cfa409e258e9ec3661db4dff0bfbb45fc95734e82d3b270a0f749629ca
+FROM kalilinux/kali-rolling@sha256:a3849f99f9f187122de4822341c49e55d250a771f2dbc5cfd56a146017e0e6ae
 
 # Fix SSL certificate issues with Kali mirrors, then install Sliver
 RUN echo "APT::Sandbox::User \"root\";" > /etc/apt/apt.conf.d/10sandbox && \
