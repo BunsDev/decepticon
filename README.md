@@ -42,6 +42,19 @@
   <video src="https://github.com/user-attachments/assets/b3fd40d8-e859-4a39-97f4-bd825694ad96" width="800" controls></video>
 </div>
 
+## 💖 Support Decepticon
+
+[![Sponsor](https://img.shields.io/badge/Sponsor-Decepticon-red?style=for-the-badge&logo=github)](https://github.com/sponsors/PurpleCHOIms)
+[![GitHub Sponsors](https://img.shields.io/github/sponsors/PurpleCHOIms?style=for-the-badge&logo=github)](https://github.com/sponsors/PurpleCHOIms)
+
+We are building Decepticon — an **Offensive Vaccine** for the AI-driven threat landscape.
+
+As attackers leverage AI, traditional defenses become obsolete.  
+Decepticon aims to automate red team operations through autonomous agents.
+
+If you believe in the future of **Autonomous Hacking Agents for Red Team Testing**, consider supporting.
+
+
 ## Install
 
 **Prerequisites**: [Docker](https://docs.docker.com/get-docker/) and Docker Compose v2. That's it.
